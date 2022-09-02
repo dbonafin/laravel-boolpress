@@ -26,6 +26,6 @@ Auth::routes();
 
 // If the user is not logged, show the guest pages
 Route::get('{any?}', function () {
-    return view('welcome');
+    return view('guest.home');
 });
 
