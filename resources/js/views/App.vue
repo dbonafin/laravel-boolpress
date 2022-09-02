@@ -1,5 +1,15 @@
 <template>
     <div class="container">
-        <h1>Guest homepage powered by vue</h1>
+        <GuestHome/>
     </div>
 </template>
+
+<script>
+
+    import GuestHome from "../components/GuestHome.vue";
+
+    export default {
+        name: "App",
+        components: { GuestHome }
+    }
+</script>
