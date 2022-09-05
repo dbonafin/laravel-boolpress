@@ -23,7 +23,6 @@ Route::middleware('auth')
     Route::resource('posts', 'PostController');
 });
 
-
 Auth::routes();
 
 // If the user is not logged, show the guest pages
