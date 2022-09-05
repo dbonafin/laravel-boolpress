@@ -20,6 +20,7 @@ Route::middleware('auth')
 ->prefix('admin')
 ->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('posts', 'PostController');
 });
 
 Auth::routes();
@@ -27,5 +28,5 @@ Auth::routes();
 // If the user is not logged, show the guest pages
 Route::get('{any?}', function () {
     return view('guest.home');
-});
+})->where('any', '.*');
 
