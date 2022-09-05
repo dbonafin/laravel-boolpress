@@ -4,6 +4,8 @@
 
 @section('content')
 
-    <h1>Admin dashboard</h1>
+    <h1>Dashboard</h1>
+
+    <h3>Welcome back, {{$user->name}}!</h3>
         
 @endsection
