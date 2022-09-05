@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -38,7 +38,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Check the validations for the form
+        $request->validate($this->getValidations());
+        // Get all the infos from the form
+        $form_data = $request->all();
+        // Create a new post
+        $new_post = new Post();
+        // Fill it with the form-infos
+        $new_post->fill($form_data);
+        $new_post->save();
+
+        return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
 
     /**
@@ -84,5 +94,12 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getValidations() {
+        return [
+            'title' => 'required | max: 100',
+            'content' => 'required | max: 20000',
+        ];
     }
 }
