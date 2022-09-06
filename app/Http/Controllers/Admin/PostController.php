@@ -72,9 +72,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.edit', compact('post'));
     }
 
     /**
@@ -86,7 +86,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Check the validations for the form
+        $request->validate($this->getValidations());
+        // Get all the infos from the form
+        $form_data = $request->all();
+        // Save the changes in the edited post
+        $edited_post = Post::findOrFail($id);
+        $edited_post->update($form_data);
+         
+        return redirect()->route('admin.posts.show', ['post' => $edited_post->id]);
     }
 
     /**
