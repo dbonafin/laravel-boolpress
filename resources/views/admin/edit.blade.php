@@ -33,6 +33,7 @@
                 value="{{ old('title', $post->title) }}"
             >
         </div>
+        
         <div class="mb-3">
             <label for="content" class="form-label">Post content</label>
             <textarea 
@@ -41,8 +42,9 @@
             name="content" 
             rows="4">{{ old('content', $post->content) }}</textarea>
         </div>
+        
         <div class="mb-3">
-            <input type="submit" class="btn btn-success mb-3" value="Save changes">
+            <input type="submit" class="btn btn-success mb-3" value="Save">
         </div>
 
     </form>

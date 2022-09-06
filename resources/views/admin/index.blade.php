@@ -15,10 +15,12 @@
                     <div class="card-body">
                         <h3 class="card-title"> {{$post->title}} </h3>
 
-                        <a href="{{route('admin.posts.show', ['post' => $post->id])}}" 
-                            class="btn btn-primary">
-                            Details
-                        </a>
+                        <div>
+                            <a href="{{route('admin.posts.show', ['post' => $post->id])}}" 
+                                class="btn btn-primary">
+                                Details
+                            </a>
+                        </div>
                     </div>
 
                 </div>
