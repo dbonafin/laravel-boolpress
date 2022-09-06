@@ -91,8 +91,14 @@ class PostController extends Controller
         $request->validate($this->getValidations());
         // Get all the infos from the form
         $form_data = $request->all();
-        // Save the changes in the edited post
         $edited_post = Post::findOrFail($id);
+        // Calc the new slug
+        if ($form_data['title'] !== $edited_post->title) {
+            $form_data['slug'] = $this->getSlug($edited_post->title);
+        } else {
+            $form_data['slug'] = $edited_post->slug;
+        }
+        // Save the changes in the edited post
         $edited_post->update($form_data);
          
         return redirect()->route('admin.posts.show', ['post' => $edited_post->id]);
