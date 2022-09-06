@@ -10,17 +10,17 @@
 
           <h2 class="card-title"> {{$post->title}} </h2>
 
-          <p class="card-text"> {{$post->content}} </p>          
+          <p class="card-text"> {{$post->content}} </p>         
+                      
+          {{-- Edit button --}}
+          <a href="{{route('admin.posts.edit', ['post' => $post->id])}}" 
+            class="btn btn-primary">
+            Edit
+          </a>
 
           <form action="{{route('admin.posts.destroy', ['post' => $post->id])}}" method="post">
             @csrf
             @method('DELETE')
-            
-            {{-- Edit button --}}
-            <a href="{{route('admin.posts.edit', ['post' => $post->id])}}" 
-              class="btn btn-primary">
-              Edit
-            </a>
 
             {{-- Delete button --}}
             <input 
