@@ -18,7 +18,7 @@
             Edit
           </a>
 
-          <form action="{{route('admin.posts.destroy', ['post' => $post->id])}}" method="post">
+          <form action="{{route('admin.posts.destroy', ['post' => $post->id])}}" method="post" class="d-inline">
             @csrf
             @method('DELETE')
 
