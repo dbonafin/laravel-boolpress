@@ -1,3 +1,5 @@
+{{-- EDIT POST PAGE --}}
+
 @extends('layouts.dashboard')
 
 @section('content')
@@ -6,10 +8,12 @@
 
     {{-- Validation error message --}}
     @if ($errors->any())
-        <div class="validation-error">
-            <ul>
+        <div class="validation-error mb-4">
+            <ul class="list-group list-group-numbered">
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <li class="list-group-item border-danger text-danger">
+                        {{ $error }}
+                    </li>
                 @endforeach
             </ul>
         </div>

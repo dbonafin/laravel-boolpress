@@ -1,3 +1,5 @@
+{{-- ALL POSTS PAGE --}}
+
 @extends('layouts.dashboard')
 
 @section('content')

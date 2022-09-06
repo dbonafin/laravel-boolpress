@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Http\Controllers\Auth;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -105,7 +106,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted_post = Post::findOrFail($id);
+        $deleted_post->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 
     public function getValidations() {
