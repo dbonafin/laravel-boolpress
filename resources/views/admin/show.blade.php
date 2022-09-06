@@ -19,6 +19,7 @@
 
           <div> Last update: {{$post->created_at}} </div>
 
+          <div> Slug: {{$post->slug}} </div>
         </div>
         
     </div>

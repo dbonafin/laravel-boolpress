@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Http\Controllers\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -46,6 +48,8 @@ class PostController extends Controller
         $new_post = new Post();
         // Fill it with the form-infos
         $new_post->fill($form_data);
+        $new_post->slug = $this->getSlug($new_post->title);
+        // Save the new post
         $new_post->save();
 
         return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
@@ -98,8 +102,28 @@ class PostController extends Controller
 
     public function getValidations() {
         return [
-            'title' => 'required | max: 100',
+            'title' => 'required | max: 500',
             'content' => 'required | max: 20000',
         ];
+    }
+
+    public function getSlug($title) {
+        // Calc the slug from the title
+        $slug_verified = Str::slug($title, '-'); 
+        $skeleton_slug = $slug_verified;
+
+        // Check if the slug is already taken
+        $taken_slug = Post::where('slug', '=', $slug_verified)->first();
+
+        $counter = 1;
+        while($taken_slug) {
+            // Create the new slug
+            $slug_verified = $skeleton_slug . '-' . $counter;
+
+            // Another check if the slug is already taken
+            $taken_slug = Post::where('slug', '=', $slug_verified)->first();
+            $counter++;
+        }
+        return $slug_verified;
     }
 }
