@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Category;
 use App\Post;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -32,8 +33,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -46,13 +48,17 @@ class PostController extends Controller
     {
         // Check the validations for the form
         $request->validate($this->getValidations());
+
         // Get all the infos from the form
         $form_data = $request->all();
+
         // Create a new post
         $new_post = new Post();
+
         // Fill it with the form-infos
         $new_post->fill($form_data);
         $new_post->slug = $this->getSlug($new_post->title);
+
         // Save the new post
         $new_post->save();
 
@@ -79,8 +85,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -94,15 +101,18 @@ class PostController extends Controller
     {
         // Check the validations for the form
         $request->validate($this->getValidations());
+
         // Get all the infos from the form
         $form_data = $request->all();
         $edited_post = Post::findOrFail($id);
+
         // Calc the new slug
         if ($form_data['title'] !== $edited_post->title) {
             $form_data['slug'] = $this->getSlug($edited_post->title);
         } else {
             $form_data['slug'] = $edited_post->slug;
         }
+        
         // Save the changes in the edited post
         $edited_post->update($form_data);
          

@@ -46,6 +46,17 @@
 
         <div class="card-footer text-muted">
 
+          {{-- Tags section --}}
+          <div> Tags: 
+
+            @forelse ($post->tags as $tag)
+              {{$tag->name}}{{ $loop->last ? '' : ',' }} 
+            @empty
+              No tags
+            @endforelse  
+          
+          </div>
+
           <div> Created: {{ $post->created_at->format('j F Y') }} </div>
 
           <div> Last update: {{ $post->created_at->format('j F Y') }} </div>

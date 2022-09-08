@@ -13,7 +13,7 @@ class AddCategoryToPost extends Migration
      */
     public function up()
     {
-        Schema::table('Posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
 
             // Create category id column in posts table
             $table->unsignedBigInteger('category_id')->after('content')->nullable();

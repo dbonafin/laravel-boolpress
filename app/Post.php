@@ -20,6 +20,6 @@ class Post extends Model
 
     // Many (posts) to many (tags) relationship
     public function tags() {
-        return $this->belongsTo('App\Tag');
+        return $this->belongsToMany('App\Tag');
     }
 }
