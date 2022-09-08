@@ -15,15 +15,11 @@
           {{-- Category section --}}
           <div class="mb-4">
             Category: 
-            
+
             @if ($post->category)
-
-              <div class="btn btn-sm btn-outline-secondary">
-                {{ $post->category->name }}
-              </div>                
-
+              <div class="btn btn-secondary btn-sm"> {{ $post->category->name }} </div>                
             @else
-                <span>Not present</span>
+                <span> No category </span>
             @endif
             
           </div>
