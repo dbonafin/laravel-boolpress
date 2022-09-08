@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    //
+    // Many (posts) to many (tags) relationship
+    public function posts() {
+        return $this->belongsTo('App\Post');
+    }
 }
