@@ -22,7 +22,8 @@
     <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="post">
         @csrf
         @method('PUT')
-
+        
+        {{-- Post title --}}
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input 
@@ -33,7 +34,8 @@
                 value="{{ old('title', $post->title) }}"
             >
         </div>
-        
+
+        {{-- Post content --}}
         <div class="mb-3">
             <label for="content" class="form-label">Post content</label>
             <textarea 
@@ -55,6 +57,23 @@
                     </option>
                 @endforeach
             </select>
+        </div>
+
+        {{-- Tags selection --}}
+        <div class="mb-3">
+            <span>Tags:</span>
+            @foreach ($tags as $tag)
+        
+                <input 
+                type="checkbox" 
+                value="{{ $tag->id }}" 
+                id="tag-{{$tag->id}}" 
+                name="tags[]"
+                {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+
+                <label class="mr-2" for="tag-{{$tag->id}}"> {{$tag->name}} </label>
+                
+            @endforeach
         </div>
         
         <div class="mb-3">

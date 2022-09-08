@@ -33,9 +33,9 @@
             <textarea class="form-control" id="content" name="content" rows="4"></textarea>
         </div>
 
-        {{-- Category select --}}
+        {{-- Category selection --}}
         <div class="mb-3">
-            <label for="category_id">Category</label>
+            <label for="category_id"> Category: </label>
             <select class="form-select" id="category_id" name="category_id">
                 <option value="">No category</option>
 
@@ -45,6 +45,23 @@
                     </option>
                 @endforeach
             </select>
+        </div>
+
+        {{-- Tags selection --}}
+        <div class="mb-3">
+            <span>Tags:</span>
+            @foreach ($tags as $tag)
+        
+                <input 
+                type="checkbox" 
+                value="{{ $tag->id }}" 
+                id="tag-{{$tag->id}}" 
+                name="tags[]"
+                {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+
+                <label class="mr-2" for="tag-{{$tag->id}}"> {{$tag->name}} </label>
+                
+            @endforeach
         </div>
 
         <div class="mb-3">
