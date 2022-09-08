@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
 use App\Http\Controllers\Auth;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Post;
 
 class PostController extends Controller
 {
