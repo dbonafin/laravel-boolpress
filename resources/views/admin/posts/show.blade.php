@@ -10,7 +10,23 @@
 
           <h2 class="card-title"> {{$post->title}} </h2>
 
-          <p class="card-text"> {{$post->content}} </p>         
+          <p class="card-text"> {{$post->content}} </p>  
+          
+          {{-- Category section --}}
+          <div class="mb-4">
+            Category: 
+            
+            @if ($post->category)
+
+              <div class="btn btn-sm btn-outline-secondary">
+                {{ $post->category->name }}
+              </div>                
+
+            @else
+                <span>Not present</span>
+            @endif
+            
+          </div>
                       
           {{-- Edit button --}}
           <a href="{{route('admin.posts.edit', ['post' => $post->id])}}" 

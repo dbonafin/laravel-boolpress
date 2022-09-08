@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Category;
 use App\Post;
 
 class PostController extends Controller
@@ -30,7 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
