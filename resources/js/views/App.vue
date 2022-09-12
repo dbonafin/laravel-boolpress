@@ -1,15 +1,15 @@
 <template>
     <div class="container">
-        <GuestHome/>
+        <Posts/>
     </div>
 </template>
 
 <script>
 
-    import GuestHome from "../components/GuestHome.vue";
+    import Posts from "../components/Posts.vue";
 
     export default {
         name: "App",
-        components: { GuestHome }
+        components: { Posts }
     }
 </script>
