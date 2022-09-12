@@ -1912,8 +1912,36 @@ __webpack_require__.r(__webpack_exports__);
   name: "Posts",
   data: function data() {
     return {
-      pageTitle: "Posts list"
+      pageTitle: "Posts Feed",
+      posts: [],
+      currentPage: 1,
+      lastPage: null
     };
+  },
+  methods: {
+    getPosts: function getPosts(pageNumber) {
+      var _this = this;
+
+      axios.get('/api/posts', {
+        params: {
+          page: pageNumber
+        }
+      }).then(function (response) {
+        _this.posts = response.data.results.data;
+        _this.currentPage = response.data.results.data.current_page;
+        _this.lastPage = response.data.results.data.last_page;
+      });
+    },
+    cutText: function cutText(text) {
+      if (text.length > 75) {
+        return text.slice(0, 50) + "..";
+      } else {
+        return text;
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.getPosts(this.currentPage);
   }
 });
 
@@ -1955,8 +1983,57 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("section", [_c("div", {
+    staticClass: "container mt-4"
+  }, [_c("h1", {
+    staticClass: "text-center"
+  }, [_vm._v(_vm._s(_vm.pageTitle))]), _vm._v(" "), _c("div", {
+    staticClass: "row row-cols-3"
+  }, _vm._l(_vm.posts, function (post) {
+    return _c("div", {
+      key: post.id,
+      staticClass: "col"
+    }, [_c("div", {
+      staticClass: "card mt-4"
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v("\n              " + _vm._s(_vm.cutText(post.content)) + "\n            ")])])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "container"
-  }, [_c("h1", [_vm._v(_vm._s(_vm.pageTitle))])])]);
+  }, [_c("a", {
+    staticClass: "btn btn-primary",
+    "class": {
+      disabled: _vm.currentPage == 1
+    },
+    attrs: {
+      href: "#",
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getPosts(_vm.currentPage - 1);
+      }
+    }
+  }, [_vm._v("\n      Previous\n    ")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-primary",
+    "class": {
+      disabled: _vm.currentPage == _vm.lastPage
+    },
+    attrs: {
+      href: "#",
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.getPosts(_vm.currentPage + 1);
+      }
+    }
+  }, [_vm._v("\n      Next\n    ")])])]);
 };
 
 var staticRenderFns = [];
