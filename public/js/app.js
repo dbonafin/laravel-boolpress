@@ -1928,8 +1928,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.posts = response.data.results.data;
-        _this.currentPage = response.data.results.data.current_page;
-        _this.lastPage = response.data.results.data.last_page;
+        _this.currentPage = response.data.results.current_page;
+        _this.lastPage = response.data.results.last_page;
       });
     },
     cutText: function cutText(text) {
@@ -2002,7 +2002,7 @@ var render = function render() {
       staticClass: "card-text"
     }, [_vm._v("\n              " + _vm._s(_vm.cutText(post.content)) + "\n            ")])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "container"
+    staticClass: "container text-center mt-4"
   }, [_c("a", {
     staticClass: "btn btn-primary",
     "class": {

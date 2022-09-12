@@ -20,7 +20,7 @@
     </div>
 
     <!-- Button for the previous page -->
-    <div class="container">
+    <div class="container text-center mt-4">
       <a @click.prevent="getPosts(currentPage - 1)" 
         href="#" 
         type="button" 
@@ -63,8 +63,8 @@
         })
         .then((response) => {
           this.posts = response.data.results.data;
-          this.currentPage = response.data.results.data.current_page;
-          this.lastPage = response.data.results.data.last_page;
+          this.currentPage = response.data.results.current_page;
+          this.lastPage = response.data.results.last_page;
         });
       },
       cutText(text) {
