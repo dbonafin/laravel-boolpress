@@ -20,23 +20,34 @@
     </div>
 
     <!-- Button for the previous page -->
-    <div class="container text-center mt-4">
-      <a @click.prevent="getPosts(currentPage - 1)" 
-        href="#" 
-        type="button" 
-        class="btn btn-primary" 
-        :class="{'disabled' : currentPage == 1}">
-        Previous
-      </a>
+    <div class="container mt-4">
+     <ul class="pagination justify-content-center">
+      <li>
+        <a @click.prevent="getPosts(currentPage - 1)" 
+          href="#" 
+          type="button" 
+          class="btn btn-primary" 
+          :class="{'disabled' : currentPage == 1}">
+          Previous
+        </a>
+     </li>
+
+      <!-- Number of pages -->
+      <li v-for="pageNumber in lastPage" :key="pageNumber" class="page-item" :class="{'active' : pageNumber == currentPage}">
+        <a @click.prevent="getPosts(pageNumber)" class="page-link" href="#"> {{ pageNumber }} </a>
+      </li>
 
       <!-- Button for the next page -->
-      <a @click.prevent="getPosts(currentPage + 1)" 
-        href="#" 
-        type="button" 
-        class="btn btn-primary" 
-        :class="{'disabled' : currentPage == lastPage}">
-        Next
-      </a>
+      <li>
+        <a @click.prevent="getPosts(currentPage + 1)" 
+          href="#" 
+          type="button" 
+          class="btn btn-primary" 
+          :class="{'disabled' : currentPage == lastPage}">
+          Next
+        </a>
+      </li>
+     </ul>
     </div>
   </section>
 

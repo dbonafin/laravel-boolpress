@@ -2002,8 +2002,10 @@ var render = function render() {
       staticClass: "card-text"
     }, [_vm._v("\n              " + _vm._s(_vm.cutText(post.content)) + "\n            ")])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "container text-center mt-4"
-  }, [_c("a", {
+    staticClass: "container mt-4"
+  }, [_c("ul", {
+    staticClass: "pagination justify-content-center"
+  }, [_c("li", [_c("a", {
     staticClass: "btn btn-primary",
     "class": {
       disabled: _vm.currentPage == 1
@@ -2018,7 +2020,26 @@ var render = function render() {
         return _vm.getPosts(_vm.currentPage - 1);
       }
     }
-  }, [_vm._v("\n      Previous\n    ")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n        Previous\n      ")])]), _vm._v(" "), _vm._l(_vm.lastPage, function (pageNumber) {
+    return _c("li", {
+      key: pageNumber,
+      staticClass: "page-item",
+      "class": {
+        active: pageNumber == _vm.currentPage
+      }
+    }, [_c("a", {
+      staticClass: "page-link",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.getPosts(pageNumber);
+        }
+      }
+    }, [_vm._v(" " + _vm._s(pageNumber) + " ")])]);
+  }), _vm._v(" "), _c("li", [_c("a", {
     staticClass: "btn btn-primary",
     "class": {
       disabled: _vm.currentPage == _vm.lastPage
@@ -2033,7 +2054,7 @@ var render = function render() {
         return _vm.getPosts(_vm.currentPage + 1);
       }
     }
-  }, [_vm._v("\n      Next\n    ")])])]);
+  }, [_vm._v("\n        Next\n      ")])])], 2)])]);
 };
 
 var staticRenderFns = [];
