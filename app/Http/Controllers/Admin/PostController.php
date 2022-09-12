@@ -59,6 +59,11 @@ class PostController extends Controller
         $new_post->fill($form_data);
         $new_post->slug = $this->getSlug($new_post->title);
 
+        // Get the selected tags
+        if (isset($form_data['tags'])) {
+            $new_post->tags()->sync($form_data['tags']);
+        }
+
         // Save the new post
         $new_post->save();
 
@@ -112,6 +117,13 @@ class PostController extends Controller
         } else {
             $form_data['slug'] = $edited_post->slug;
         }
+
+        // Get the selected tags
+        if (isset($form_data['tags'])) {
+            $edited_post->tags()->sync($form_data['tags']);
+        } else {
+            $edited_post->tags()->sync([]);
+        }
         
         // Save the changes in the edited post
         $edited_post->update($form_data);
@@ -137,6 +149,8 @@ class PostController extends Controller
         return [
             'title' => 'required | max: 500',
             'content' => 'required | max: 20000',
+            'category_id' => 'nullable | exists:categories,id',
+            'tags' => 'nullable | exists:tags,id' 
         ];
     }
 
