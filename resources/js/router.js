@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import HomePage from "./pages/HomePage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 import BlogPage from "./pages/BlogPage.vue";
+import NotfoundPage from "./pages/NotfoundPage.vue";
 
 Vue.use(VueRouter);
 
@@ -23,8 +24,12 @@ const router = new VueRouter({
         { path: '/blog', 
         component: BlogPage,
         name: 'blog' 
+        },
+        { path: '/*', 
+        component: NotfoundPage,
+        name: 'notfound' 
         }
-   ]
+    ]
 });
 
 export default router;
