@@ -1,15 +1,16 @@
 <template>
-    <div class="container">
-        <Posts/>
-    </div>
+
+    <main>
+        <div class="container">
+            <router-view></router-view>
+        </div>
+    </main>
+
 </template>
 
 <script>
 
-    import Posts from "../components/Posts.vue";
-
     export default {
-        name: "App",
-        components: { Posts }
+        name: "App"
     }
 </script>
