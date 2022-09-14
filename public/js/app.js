@@ -2106,9 +2106,19 @@ var render = function render() {
       staticClass: "card-body"
     }, [_c("h5", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", {
+    }, [_vm._v(" " + _vm._s(post.title) + " ")]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v("\n              " + _vm._s(_vm.cutText(post.content)) + "\n            ")])])])]);
+    }, [_vm._v("\n              " + _vm._s(_vm.cutText(post.content)) + "\n            ")]), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-sm btn-primary",
+      attrs: {
+        to: {
+          name: "post-details",
+          params: {
+            slug: post.slug
+          }
+        }
+      }
+    }, [_vm._v("View\n            ")])], 1)])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "container mt-4"
   }, [_c("ul", {
@@ -2305,7 +2315,12 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("p", {
     staticClass: "card-text"
-  }, [_vm._v(" " + _vm._s(_vm.post.content) + " ")])])])]) : _vm._e();
+  }, [_vm._v(" " + _vm._s(_vm.post.content) + " ")]), _vm._v(" "), _vm.post.category ? _c("div", [_vm._v("Category: " + _vm._s(_vm.post.category.name))]) : _vm._e(), _vm._v(" "), _vm.post.tags.length > 0 ? _c("div", _vm._l(_vm.post.tags, function (tag) {
+    return _c("span", {
+      key: tag.id,
+      staticClass: "badge bg-info text-dark ml-2"
+    }, [_vm._v(_vm._s(tag.name))]);
+  }), 0) : _vm._e()])])]) : _vm._e();
 };
 
 var staticRenderFns = [];

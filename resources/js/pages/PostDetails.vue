@@ -4,8 +4,16 @@
         <div class="card text-dark text-center bg-light mb-3">
             <div class="card-header"> {{post.title}} </div>
 
+
             <div class="card-body">
                 <p class="card-text"> {{post.content}} </p>
+
+                <div v-if="post.category">Category: {{post.category.name}}</div>
+
+                <div v-if="post.tags.length > 0"> 
+                    <span v-for="tag in post.tags" :key="tag.id" class="badge bg-info text-dark ml-2">{{tag.name}}</span>
+                </div>
+               
             </div>
         </div>
     </div>
