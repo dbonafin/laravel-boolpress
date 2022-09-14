@@ -2021,9 +2021,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostDetails",
   data: function data() {
@@ -2035,13 +2032,15 @@ __webpack_require__.r(__webpack_exports__);
     getSinglePost: function getSinglePost() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/posts' + this.$route.params.slug).then(function (response) {
+      axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (response) {
         _this.post = response.data.results;
-      });
+      }); // .catch((error)=> {
+      //     console.log(error);
+      // });
     }
   },
   mounted: function mounted() {
-    this.getSinglePost;
+    this.getSinglePost();
   }
 });
 
@@ -2298,7 +2297,15 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm.post ? _c("div", [_c("h2", [_vm._v(_vm._s(_vm.post.title) + " ")]), _vm._v(" "), _c("p", [_vm._v("\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ab corporis numquam? Veritatis tempore et vitae amet illum quidem consequatur ullam a. Iure impedit nisi possimus aliquid id vitae molestiae?\n    ")])]) : _vm._e();
+  return _vm.post ? _c("div", [_c("div", {
+    staticClass: "card text-dark text-center bg-light mb-3"
+  }, [_c("div", {
+    staticClass: "card-header"
+  }, [_vm._v(" " + _vm._s(_vm.post.title) + " ")]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(" " + _vm._s(_vm.post.content) + " ")])])])]) : _vm._e();
 };
 
 var staticRenderFns = [];

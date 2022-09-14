@@ -1,18 +1,18 @@
 <template>
 
     <div v-if="post">
-        <h2>{{post.title}} </h2>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A ab corporis numquam? Veritatis tempore et vitae amet illum quidem consequatur ullam a. Iure impedit nisi possimus aliquid id vitae molestiae?
-        </p>
+        <div class="card text-dark text-center bg-light mb-3">
+            <div class="card-header"> {{post.title}} </div>
+
+            <div class="card-body">
+                <p class="card-text"> {{post.content}} </p>
+            </div>
+        </div>
     </div>
 
 </template>
 
 <script>
-    
-    import axios from 'axios';
-
     export default {
         name: "PostDetails",
         data() {
@@ -22,13 +22,17 @@
         },
         methods: {
             getSinglePost() {
-                axios.get('/api/posts' + this.$route.params.slug).then((response)=> {
+                axios.get(`/api/posts/${this.$route.params.slug}`)
+                .then((response) => {
                     this.post = response.data.results;
-                });
+                })
+                // .catch((error)=> {
+                //     console.log(error);
+                // });
             }
         },
         mounted() {
-            this.getSinglePost;
+            this.getSinglePost();
         },
     }
 
