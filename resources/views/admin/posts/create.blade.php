@@ -65,9 +65,9 @@
         </div>
 
         <div class="mb-3">
-            <label for="formFile" class="form-label"> Upload an image </label>
+            <label for="cover" class="form-label"> Upload an image </label>
 
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" name="cover" id="cover">
         </div>
 
         <div class="mb-3">

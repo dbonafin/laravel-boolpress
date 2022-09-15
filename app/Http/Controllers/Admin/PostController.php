@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Category;
@@ -64,6 +65,12 @@ class PostController extends Controller
             $new_post->tags()->sync($form_data['tags']);
         }
 
+        // If the user uploads an image
+        if(isset($form_data['cover'])) {
+            // Put the image in post-covers and get the image path
+            $img_path = Storage::put('post-covers', $form_data['cover']);
+            $form_data['cover'] = $img_path;
+        }
         // Save the new post
         $new_post->save();
 
@@ -150,7 +157,8 @@ class PostController extends Controller
             'title' => 'required | max: 500',
             'content' => 'required | max: 20000',
             'category_id' => 'nullable | exists:categories,id',
-            'tags' => 'nullable | exists:tags,id' 
+            'tags' => 'nullable | exists:tags,id',
+            'cover' => 'image | nullable | max: 1024' 
         ];
     }
 
