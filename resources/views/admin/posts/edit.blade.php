@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="post">
+    <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         
@@ -94,6 +94,18 @@
                 @endif
 
             @endforeach
+        </div>
+
+        {{-- Image upload input --}}
+        <div class="mb-3">
+            <label for="cover" class="form-label"> Upload an image </label>
+
+            <input class="form-control" type="file" name="cover" id="cover">
+
+            @if ($post->cover)
+                <span>Current image</span>
+                <img class="w-50 mt-4" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+            @endif
         </div>
         
         <div class="mb-3">

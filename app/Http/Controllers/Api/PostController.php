@@ -10,6 +10,13 @@ class PostController extends Controller
 {
     public function getPosts() {
         $posts = Post::paginate(6);
+
+        foreach($posts as $post) {
+            if($post->cover) {
+                $post->cover = asset('storage/' . $post->cover);
+            }
+        }
+
         $data = [
             'success' => true,
             'results' => $posts
@@ -20,6 +27,10 @@ class PostController extends Controller
 
     public function showPost($slug) {
         $post = Post::where('slug', '=', $slug)->with(['tags', 'category'])->first();
+
+        if($post->cover) {
+            $post->cover = asset('storage/' . $post->cover);
+        }
 
         if($post) {
             $data = [

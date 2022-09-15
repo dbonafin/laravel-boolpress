@@ -64,6 +64,7 @@
             @endforeach
         </div>
 
+        {{-- Image upload input --}}
         <div class="mb-3">
             <label for="cover" class="form-label"> Upload an image </label>
 

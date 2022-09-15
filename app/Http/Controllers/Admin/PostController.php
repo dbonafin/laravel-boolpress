@@ -55,10 +55,7 @@ class PostController extends Controller
 
         // Create a new post
         $new_post = new Post();
-
-        // Fill it with the form-infos
-        $new_post->fill($form_data);
-        $new_post->slug = $this->getSlug($new_post->title);
+        // dd($form_data['cover']);        
 
         // Get the selected tags
         if (isset($form_data['tags'])) {
@@ -70,7 +67,13 @@ class PostController extends Controller
             // Put the image in post-covers and get the image path
             $img_path = Storage::put('post-covers', $form_data['cover']);
             $form_data['cover'] = $img_path;
+            // dd($form_data['cover']);
         }
+
+        // Fill the fillables with the infos given by the user
+        $new_post->fill($form_data);
+        $new_post->slug = $this->getSlug($new_post->title);
+
         // Save the new post
         $new_post->save();
 

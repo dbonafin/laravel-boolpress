@@ -2211,11 +2211,17 @@ var render = function render() {
     staticClass: "card mt-4"
   }, [_c("div", {
     staticClass: "card-body"
-  }, [_c("h5", {
+  }, [_vm.post.cover ? _c("img", {
+    staticClass: "w-100",
+    attrs: {
+      src: _vm.post.cover,
+      alt: _vm.post.title
+    }
+  }) : _vm._e(), _vm._v(" "), _c("h5", {
     staticClass: "card-title"
   }, [_vm._v(" " + _vm._s(_vm.post.title) + " ")]), _vm._v(" "), _c("p", {
     staticClass: "card-text"
-  }, [_vm._v("\n            " + _vm._s(_vm.cutText(_vm.post.content)) + "\n          ")]), _vm._v(" "), _c("router-link", {
+  }, [_vm._v("\n                " + _vm._s(_vm.cutText(_vm.post.content)) + "\n            ")]), _vm._v(" "), _c("router-link", {
     staticClass: "btn btn-sm btn-primary",
     attrs: {
       to: {
@@ -2361,18 +2367,28 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _vm.post ? _c("div", [_c("div", {
-    staticClass: "card text-dark text-center bg-light mb-3"
-  }, [_c("div", {
-    staticClass: "card-header"
-  }, [_vm._v(" " + _vm._s(_vm.post.title) + " ")]), _vm._v(" "), _c("div", {
+    staticClass: "card mb-3"
+  }, [_vm.post.cover ? _c("img", {
+    staticClass: "w-50 mx-auto mt-4 card-img-top",
+    attrs: {
+      src: _vm.post.cover,
+      alt: _vm.post.title
+    }
+  }) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_c("p", {
-    staticClass: "card-text"
-  }, [_vm._v(" " + _vm._s(_vm.post.content) + " ")]), _vm._v(" "), _vm.post.category ? _c("div", [_vm._v("Category: " + _vm._s(_vm.post.category.name))]) : _vm._e(), _vm._v(" "), _vm.post.tags.length > 0 ? _c("div", _vm._l(_vm.post.tags, function (tag) {
+  }, [_c("h5", {
+    staticClass: "card-title text-center"
+  }, [_vm._v(_vm._s(_vm.post.title) + " ")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text text-center"
+  }, [_vm._v("\n                " + _vm._s(_vm.post.content) + "\n            ")]), _vm._v(" "), _vm.post.category ? _c("div", {
+    staticClass: "text-center"
+  }, [_vm._v("Category: " + _vm._s(_vm.post.category.name))]) : _vm._e(), _vm._v(" "), _vm.post.tags.length > 0 ? _c("div", {
+    staticClass: "text-center"
+  }, _vm._l(_vm.post.tags, function (tag) {
     return _c("span", {
       key: tag.id,
       staticClass: "badge bg-info text-dark ml-2"
-    }, [_vm._v(_vm._s(tag.name))]);
+    }, [_vm._v("\n                    " + _vm._s(tag.name) + "\n                ")]);
   }), 0) : _vm._e()])])]) : _vm._e();
 };
 

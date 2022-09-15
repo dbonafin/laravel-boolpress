@@ -11,7 +11,7 @@
           <h2 class="card-title"> {{$post->title}} </h2>
 
           @if ($post->cover)
-            <img class="w-50" src="{{ asset('storage' . $post->cover) }}" alt="{{ $post->title }}">
+            <img class="w-50" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
           @endif
 
           <p class="card-text"> {{$post->content}} </p>  
