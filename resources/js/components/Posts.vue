@@ -7,25 +7,7 @@
       <div class="row row-cols-3">
         <!-- Single post card -->
         <div v-for="post in posts" :key="post.id" class="col">
-          <div class="card mt-4">
-            <div class="card-body">
-              <h5 class="card-title"> {{ post.title }} </h5>
-
-              <p class="card-text">
-                {{ cutText(post.content) }}
-              </p>
-
-              <router-link 
-
-                class="btn btn-sm btn-primary"
-                :to="{
-                  name: 'post-details',
-                  params: {slug: post.slug}
-                }">View
-              </router-link>
-
-            </div>
-          </div>
+          <SinglePost :post="post"/>
         </div>
       </div>
     </div>
@@ -66,8 +48,11 @@
 
 <script>
 
+  import SinglePost from '../components/SinglePost.vue';
+
   export default {
     name: "Posts",
+    components: { SinglePost },
     data() {
       return {
         pageTitle: "Posts Feed",
@@ -88,13 +73,6 @@
           this.currentPage = response.data.results.current_page;
           this.lastPage = response.data.results.last_page;
         });
-      },
-      cutText(text) {
-        if (text.length > 75) {
-          return text.slice(0, 50) + "..";
-        } else {
-          return text;
-        }
       },
     },
     mounted() {
