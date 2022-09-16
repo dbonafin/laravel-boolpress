@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use App\Category;
 use App\Post;
 use App\Tag;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
 
 class PostController extends Controller
 {
@@ -76,6 +78,9 @@ class PostController extends Controller
 
         // Save the new post
         $new_post->save();
+
+        // Invio la mail all'amministratore per notificarlo del nuovo post
+        Mail::to('demian@boolpress.com')->send(new SendEmail($new_post));
 
         return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
