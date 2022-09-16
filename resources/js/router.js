@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage.vue";
 import BlogPage from "./pages/BlogPage.vue";
 import NotfoundPage from "./pages/NotfoundPage.vue";
 import PostDetails from "./pages/PostDetails.vue";
+import ContactPage from "./pages/ContactPage.vue";
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const router = new VueRouter({
         { path: '/blog/:slug', 
         component: PostDetails,
         name: 'post-details' 
+        },
+        {
+         path: '/contact',
+         name: 'contact',
+         component: ContactPage
         },
         { path: '/*', 
         component: NotfoundPage,

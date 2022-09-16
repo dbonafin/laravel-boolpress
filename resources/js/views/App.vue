@@ -51,7 +51,11 @@
                     {
                         name: 'blog',
                         label: 'Blog'
-                    }
+                    },
+                    {
+                        name: 'contact',
+                        label: 'Contact Us'
+                    },
                 ]
             }
         },
